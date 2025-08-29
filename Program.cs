@@ -12,34 +12,34 @@ namespace ArraySort
         {
             // 1. Single Dim. Array
 
-            //int min;
-            //int[] ar = new int[11] { 12, 7, 4, 27, 1, 13, 19, 6, 30, 9, 8 };
+            int min;
+            int[] ar = new int[11] { 12, 7, 4, 27, 1, 13, 19, 6, 30, 9, 8 };
 
-            //for (int x = 0; x < ar.Length; x++)
-            //{              
-            //    for (int i = 0; i < 11; i++)
-            //    {
-            //        if (ar[x] < ar[i])
-            //        {
-            //            min = ar[x];
+            for (int num = 0; num < ar.Length; num++)
+            {
+                for (int i = 0; i < ar.Length; i++)
+                {
+                    if (ar[num] < ar[i])
+                    {
+                        min = ar[num];
 
-            //            ar[x] = ar[i];                      
-            //            ar[i] = min;
-            //        }
-            //    }
-            //}
-            //Console.WriteLine("SINGLE ARRAY SORTED\n");
+                        ar[num] = ar[i];
+                        ar[i] = min;
+                    }
+                }
+            }
+            Console.WriteLine("SINGLE ARRAY SORTED:\n");
 
-            //for (int i = 0; i < ar.Length; i++)
-            //{
-            //    Console.Write(ar[i] + "  ");
-            //}
+            for (int i = 0; i < ar.Length; i++)
+            {
+                Console.Write(ar[i] + "  ");
+            }
 
 
 
             // 2. Multi Dim. Array
-
-            int[,] ar2 = new int[7, 10]
+           
+            int[,] sorted = new int[7, 10]
             {
                 {54,3,21,50,57,7,73,24,85,79}, 
                 {33,11,19,33,51,72,80,6,78,25}, 
@@ -50,75 +50,43 @@ namespace ArraySort
                 {18,76,2,5,26,84,15,82,9,60}
             };
 
-            // ph_ARR --- placeholder array
-            // ph_IND --- Placeholder index
+            int minNum;
 
-            // loop_ARR--- Looping array
-            // loop_IND--- Looping index
-
-            //Array 1:   [0,0] - [0,9]
-
-          //  int ph_ARR = 0;
-           // int ph_IND = 0;
-           // int loop_ARR = 0;
-            int min2;
-
-
-            for (int ph_ARR = 0; ph_ARR < 7; ph_ARR++)  //PLACEHOLDER ARRAY
+            //loops through arrays for num to be compared
+            for (int row = 0; row < 7; row++) 
             {
-                for (int ph_IND = 0; ph_IND < 10; ph_IND++)  //PLACEHOLDER INDEX
+                //loops through columns for num to be compared
+                for (int column = 0; column < 10; column++)  
                 {
-                    for (int loop_ARR = 0; loop_ARR < 7; loop_ARR++) //LOOPING ARRAY
+                    // Looping through each array (for checking) -- goes to next array after each element is checked
+                    for (int checkingRow = 0; checkingRow < 7; checkingRow++) 
                     {
-                        for (int loop_IND = 0; loop_IND < 10; loop_IND++)  //LOOPING INDEX
+                        // Loops through each element in an array (for checking)
+                        for (int checkingColumn = 0; checkingColumn < 10; checkingColumn++)  
                         {
-                            if (ar2[ph_ARR, ph_IND] < ar2[loop_ARR, loop_IND])
+                            if (sorted[row, column] < sorted[checkingRow, checkingColumn])
                             {
-                                // A B   B B   B A
+                                minNum = sorted[row, column];  // hold smaller nums index 
 
-                                min2 = ar2[ph_ARR, ph_IND];
-
-                                ar2[ph_ARR, ph_IND] = ar2[loop_ARR, loop_IND];
-
-                                ar2[loop_ARR, loop_IND] = min2;
-
-                                    Console.WriteLine($"\n[{loop_ARR},{loop_IND}].  PLACEHOLDER: {ar2[ph_ARR, ph_IND]}");
-
-
-                                //for (int i = 0; i < 7; i++)
-                                //{
-                                //    for (int x = 0; x < 10; x++)
-                                //    {
-                                //        Console.Write(ar2[i, x] + "   ");
-                                //    }
-                                //    Console.WriteLine("\n");
-                                //}
-
-                                //Console.WriteLine("\n\n\n\n\n");
-
-                            }
-                            else
-                            {
-                                Console.WriteLine($"\n[{loop_ARR},{loop_IND}].  PLACEHOLDER: {ar2[ph_ARR, ph_IND]}");
+                                //swaps positions
+                                sorted[row, column] = sorted[checkingRow, checkingColumn]; 
+                                sorted[checkingRow, checkingColumn] = minNum; 
                             }
                         }
                     }
                 }
             }
 
-
-            Console.WriteLine("\n\nMULTI ARRAY SORTED\n");
+            Console.WriteLine("\n\n\nMULTI ARRAY SORTED:\n");
 
             for (int i = 0; i < 7; i++)
             {
-                for (int x=0; x < 10; x++)
+                for (int x = 0; x < 10; x++)
                 {
-                    Console.Write(ar2[i,x] + "   ");
+                    Console.Write(sorted[i, x] + "   ");
                 }
-                Console.WriteLine("\n\n");
+                Console.WriteLine("\n");
             }
-
-
         }
     }
 }
